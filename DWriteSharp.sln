@@ -1,0 +1,74 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{83FEB1FE-1C0B-411B-9708-33C2DB3CE681}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D1B88788-0211-46B5-A841-FE4022972A2B}"
+	ProjectSection(SolutionItems) = preProject
+		global.json = global.json
+	EndProjectSection
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "DWriteSharp", "src\DWriteSharp\DWriteSharp.xproj", "{D1E7BA3D-7F03-4B18-9998-FAC0D2BBCA11}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{9854CF38-898A-4F61-A69A-4875E100362C}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "DWriteSharpTest", "test\DWriteSharpTest\DWriteSharpTest.xproj", "{166F64BF-501A-4059-BFDD-3802FA9D2776}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DWriteSharpNativeHelper", "src\DWriteSharpNativeHelper\DWriteSharpNativeHelper.vcxproj", "{451A9F54-FD97-46B5-8DEB-0440A69D8208}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D1E7BA3D-7F03-4B18-9998-FAC0D2BBCA11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1E7BA3D-7F03-4B18-9998-FAC0D2BBCA11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1E7BA3D-7F03-4B18-9998-FAC0D2BBCA11}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{D1E7BA3D-7F03-4B18-9998-FAC0D2BBCA11}.Debug|x64.Build.0 = Debug|Any CPU
+		{D1E7BA3D-7F03-4B18-9998-FAC0D2BBCA11}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D1E7BA3D-7F03-4B18-9998-FAC0D2BBCA11}.Debug|x86.Build.0 = Debug|Any CPU
+		{D1E7BA3D-7F03-4B18-9998-FAC0D2BBCA11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1E7BA3D-7F03-4B18-9998-FAC0D2BBCA11}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1E7BA3D-7F03-4B18-9998-FAC0D2BBCA11}.Release|x64.ActiveCfg = Release|Any CPU
+		{D1E7BA3D-7F03-4B18-9998-FAC0D2BBCA11}.Release|x64.Build.0 = Release|Any CPU
+		{D1E7BA3D-7F03-4B18-9998-FAC0D2BBCA11}.Release|x86.ActiveCfg = Release|Any CPU
+		{D1E7BA3D-7F03-4B18-9998-FAC0D2BBCA11}.Release|x86.Build.0 = Release|Any CPU
+		{166F64BF-501A-4059-BFDD-3802FA9D2776}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{166F64BF-501A-4059-BFDD-3802FA9D2776}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{166F64BF-501A-4059-BFDD-3802FA9D2776}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{166F64BF-501A-4059-BFDD-3802FA9D2776}.Debug|x64.Build.0 = Debug|Any CPU
+		{166F64BF-501A-4059-BFDD-3802FA9D2776}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{166F64BF-501A-4059-BFDD-3802FA9D2776}.Debug|x86.Build.0 = Debug|Any CPU
+		{166F64BF-501A-4059-BFDD-3802FA9D2776}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{166F64BF-501A-4059-BFDD-3802FA9D2776}.Release|Any CPU.Build.0 = Release|Any CPU
+		{166F64BF-501A-4059-BFDD-3802FA9D2776}.Release|x64.ActiveCfg = Release|Any CPU
+		{166F64BF-501A-4059-BFDD-3802FA9D2776}.Release|x64.Build.0 = Release|Any CPU
+		{166F64BF-501A-4059-BFDD-3802FA9D2776}.Release|x86.ActiveCfg = Release|Any CPU
+		{166F64BF-501A-4059-BFDD-3802FA9D2776}.Release|x86.Build.0 = Release|Any CPU
+		{451A9F54-FD97-46B5-8DEB-0440A69D8208}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{451A9F54-FD97-46B5-8DEB-0440A69D8208}.Debug|x64.ActiveCfg = Debug|x64
+		{451A9F54-FD97-46B5-8DEB-0440A69D8208}.Debug|x64.Build.0 = Debug|x64
+		{451A9F54-FD97-46B5-8DEB-0440A69D8208}.Debug|x86.ActiveCfg = Debug|Win32
+		{451A9F54-FD97-46B5-8DEB-0440A69D8208}.Debug|x86.Build.0 = Debug|Win32
+		{451A9F54-FD97-46B5-8DEB-0440A69D8208}.Release|Any CPU.ActiveCfg = Release|Win32
+		{451A9F54-FD97-46B5-8DEB-0440A69D8208}.Release|x64.ActiveCfg = Release|x64
+		{451A9F54-FD97-46B5-8DEB-0440A69D8208}.Release|x64.Build.0 = Release|x64
+		{451A9F54-FD97-46B5-8DEB-0440A69D8208}.Release|x86.ActiveCfg = Release|Win32
+		{451A9F54-FD97-46B5-8DEB-0440A69D8208}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D1E7BA3D-7F03-4B18-9998-FAC0D2BBCA11} = {83FEB1FE-1C0B-411B-9708-33C2DB3CE681}
+		{166F64BF-501A-4059-BFDD-3802FA9D2776} = {9854CF38-898A-4F61-A69A-4875E100362C}
+		{451A9F54-FD97-46B5-8DEB-0440A69D8208} = {83FEB1FE-1C0B-411B-9708-33C2DB3CE681}
+	EndGlobalSection
+EndGlobal

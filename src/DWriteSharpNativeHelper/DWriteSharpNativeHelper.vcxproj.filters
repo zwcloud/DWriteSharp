@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="IDirectWriteMeshTextRenderer.cpp" />
+    <ClCompile Include="IMeshTessellationSink.cpp" />
+    <ClCompile Include="DwriteSharpNativeHelper.cpp" />
+    <ClCompile Include="DebugUtility.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="IDirectWriteMeshTextRenderer.h" />
+    <ClInclude Include="IMeshTessellationSink.h" />
+    <ClInclude Include="DwriteSharpNativeHelper.h" />
+    <ClInclude Include="DebugUtility.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="DwriteSharpNativeHelper.def" />
+  </ItemGroup>
+</Project>
