@@ -2,15 +2,16 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="IDirectWriteMeshTextRenderer.cpp" />
-    <ClCompile Include="IMeshTessellationSink.cpp" />
     <ClCompile Include="DwriteSharpNativeHelper.cpp" />
     <ClCompile Include="DebugUtility.cpp" />
+    <ClCompile Include="ISimpleGeometrySink.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="IDirectWriteMeshTextRenderer.h" />
-    <ClInclude Include="IMeshTessellationSink.h" />
     <ClInclude Include="DwriteSharpNativeHelper.h" />
     <ClInclude Include="DebugUtility.h" />
+    <ClInclude Include="ISimpleGeometrySink.h" />
+    <ClInclude Include="Context.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="DwriteSharpNativeHelper.def" />

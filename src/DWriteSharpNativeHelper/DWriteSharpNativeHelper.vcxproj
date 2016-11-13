@@ -168,17 +168,18 @@ xcopy /Y /S "$(OutDir)*.pdb" "E:\dll"</Command>
   <ItemGroup>
     <ClCompile Include="DebugUtility.cpp" />
     <ClCompile Include="DwriteSharpNativeHelper.cpp" />
-    <ClCompile Include="IMeshTessellationSink.cpp" />
     <ClCompile Include="IDirectWriteMeshTextRenderer.cpp" />
+    <ClCompile Include="ISimpleGeometrySink.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="DwriteSharpNativeHelper.def" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Context.h" />
     <ClInclude Include="DebugUtility.h" />
     <ClInclude Include="DwriteSharpNativeHelper.h" />
-    <ClInclude Include="IMeshTessellationSink.h" />
     <ClInclude Include="IDirectWriteMeshTextRenderer.h" />
+    <ClInclude Include="ISimpleGeometrySink.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

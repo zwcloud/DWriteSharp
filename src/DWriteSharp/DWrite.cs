@@ -78,16 +78,14 @@ namespace DWriteSharp
             return dWriteTextLayout;
         }
 
-        public static void RenderLayoutToMesh(TextLayout textLayout, float offsetX, float offsetY, out int[] indexArray, out float[] vertexArray)
+        public static void RenderLayoutToMesh(TextLayout textLayout, float offsetX, float offsetY,
+            PointAdder pointAdder, BezierAdder bezierAdder, PathCloser pathCloser, FigureBeginner figureBeginner, FigureEnder figureEnder)
         {
-            Context context = new Context();
+            Context context = new Context { PointAdder = pointAdder, BezierAdder = bezierAdder, PathCloser = pathCloser,
+                FigureBeginner = figureBeginner,
+                FigureEnder = figureEnder
+            };
             textLayout.RenderToMesh(ref context, Render, offsetX, offsetY);
-            indexArray = Enumerable.Range(0, context.positionBufferLength/2).ToArray();
-            vertexArray = new float[context.positionBufferLength];
-            if(context.positionBufferLength != 0)
-            {
-                Marshal.Copy(context.positionBuffer, vertexArray, 0, context.positionBufferLength);
-            }
             Render.ClearBuffer();
         }
     }

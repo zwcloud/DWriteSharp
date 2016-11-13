@@ -1,16 +1,9 @@
 #include "IDirectWriteMeshTextRenderer.h"
-#include "IMeshTessellationSink.h"
 #include "DebugUtility.h"
-#include "DwriteSharpNativeHelper.h"
-#include <vector>
+#include "ISimpleGeometrySink.h"
+#include "Context.h"
 
 //#define DEBUG_PRINT_GLYPH_INFO
-
-struct ClientContext
-{
-	float* positionBuffer;
-	int positionBufferLength;
-};
 
 // {1A87B373-3BD5-4E9C-BC2E-1811CE7248F2}
 const GUID IDirectWriteMeshTextRenderer::IID_IDirectWriteMeshTextRenderer =
@@ -30,31 +23,27 @@ IDirectWriteMeshTextRenderer::~IDirectWriteMeshTextRenderer()
 	pD2DFactory_->Release();
 }
 
-HRESULT IDirectWriteMeshTextRenderer::Clear()
+STDMETHODIMP IDirectWriteMeshTextRenderer::Clear()//TODO remove this
 {
-	this->renderContext.offsetX = 0;
-	this->renderContext.offsetY = 0;
-	this->renderContext.vIndex.clear();
-	this->renderContext.vPosition.clear();
 	return 0x12345;
 }
 
-HRESULT IDirectWriteMeshTextRenderer::IsPixelSnappingDisabled(void*, BOOL*)
+STDMETHODIMP IDirectWriteMeshTextRenderer::IsPixelSnappingDisabled(__maybenull void*, __out BOOL*)
 {
 	return S_OK;
 }
 
-HRESULT IDirectWriteMeshTextRenderer::GetCurrentTransform(void*, DWRITE_MATRIX*)
+STDMETHODIMP IDirectWriteMeshTextRenderer::GetCurrentTransform(__maybenull void*, __out DWRITE_MATRIX*)
 {
 	return S_OK;
 }
 
-HRESULT IDirectWriteMeshTextRenderer::GetPixelsPerDip(void*, FLOAT*)
+STDMETHODIMP IDirectWriteMeshTextRenderer::GetPixelsPerDip(__maybenull void*, __out FLOAT*)
 {
 	return S_OK;
 }
 
-HRESULT IDirectWriteMeshTextRenderer::DrawGlyphRun(
+STDMETHODIMP IDirectWriteMeshTextRenderer::DrawGlyphRun(
 	void* clientDrawingContext,
 	FLOAT baselineOriginX,
 	FLOAT baselineOriginY,
@@ -70,44 +59,37 @@ HRESULT IDirectWriteMeshTextRenderer::DrawGlyphRun(
 	if (clientDrawingContext == nullptr) {
 		return ERROR_BAD_ARGUMENTS;
 	}
-
-#if 1
-	auto clientContext = (ClientContext*)clientDrawingContext;
-	pSink = new IMeshTessellationSink(&this->renderContext); //Allocate IMeshTessellationSink
-	if (!pSink)
-	{
-		hr = E_OUTOFMEMORY;
-		return hr;
-	}
+	
+	auto context = (SimpleRenderContext*)clientDrawingContext;
 
 	//Update context
-	this->renderContext.offsetX = baselineOriginX;
-	this->renderContext.offsetY = baselineOriginY;
+	context->offsetX = baselineOriginX;
+	context->offsetY = baselineOriginY;
 
-	//Build mesh data
+	//Add data by callbacks
 	hr = pD2DFactory_->CreatePathGeometry(&pPathGeometry);
 	DebugAssert(SUCCEEDED(hr), "pD2DFactory_->CreatePathGeometry failed.");
 	{
-		ID2D1GeometrySink *pD2DSink = nullptr;
-		hr = pPathGeometry->Open(&pD2DSink);
+		ISimpleGeometrySink *pSGSink = new ISimpleGeometrySink(context);
 		DebugAssert(SUCCEEDED(hr), "ID2D1GeometrySink::Open failed.");
 
 		hr = glyphRun->fontFace->GetGlyphRunOutline(
-			             glyphRun->fontEmSize,
-			             glyphRun->glyphIndices,
-			             glyphRun->glyphAdvances,
-			             glyphRun->glyphOffsets,
-			             glyphRun->glyphCount,
-			             glyphRun->isSideways,
-			             glyphRun->bidiLevel % 2,
-						 pD2DSink);
+			            glyphRun->fontEmSize,
+			            glyphRun->glyphIndices,
+			            glyphRun->glyphAdvances,
+			            glyphRun->glyphOffsets,
+			            glyphRun->glyphCount,
+			            glyphRun->isSideways,
+			            glyphRun->bidiLevel % 2,
+						pSGSink);
 		DebugAssert(SUCCEEDED(hr), "glyphRun->fontFace->GetGlyphRunOutline failed.");
 
-		hr = pD2DSink->Close();
-		DebugAssert(SUCCEEDED(hr), "CloseÊ§°Ü£¡");
+		hr = pSGSink->Close();
+		DebugAssert(SUCCEEDED(hr), "pSGSink->Close failed");
 
-		pD2DSink->Release();
+		pSGSink->Release();
 	}
+	pPathGeometry->Release();
 
 #ifdef  DEBUG_PRINT_GLYPH_INFO
 	static wchar_t* enumStringsOfmeasuringMode[] =
@@ -141,37 +123,24 @@ HRESULT IDirectWriteMeshTextRenderer::DrawGlyphRun(
 	DebugPrintf(L"	Text position: %d\n", glyphRunDescription->textPosition);
 #endif
 
-	{
-		DebugAssert(SUCCEEDED(hr), "ICairoGeometrySink ´´½¨Ê§°Ü£¡");
-		hr = pPathGeometry->Tessellate(nullptr, 0.1, pSink);
-		DebugAssert(SUCCEEDED(hr), "TessellateÊ§°Ü£¡Error: %d\n", hr);
-		hr = pSink->Close();
-		DebugAssert(SUCCEEDED(hr), "CloseÊ§°Ü£¡");
-
-		pSink->Release(); //Release IMeshTessellationSink
-	}
-
-	//Save mesh data pointer
-	clientContext->positionBuffer = this->renderContext.vPosition.data();
-	clientContext->positionBufferLength = this->renderContext.vPosition.size();
-#endif
+	DebugPrintf("IDirectWriteMeshTextRenderer::DrawGlyphRun returned.\n");
 	return S_OK;
 }
 
-HRESULT IDirectWriteMeshTextRenderer::DrawUnderline(void*, FLOAT, FLOAT, const DWRITE_UNDERLINE*, IUnknown*)
+STDMETHODIMP IDirectWriteMeshTextRenderer::DrawUnderline(__maybenull void*, FLOAT, FLOAT, const DWRITE_UNDERLINE*, IUnknown*)
 { return S_OK; }
 
-HRESULT IDirectWriteMeshTextRenderer::DrawStrikethrough(void*, FLOAT, FLOAT, const DWRITE_STRIKETHROUGH*, IUnknown*)
+STDMETHODIMP IDirectWriteMeshTextRenderer::DrawStrikethrough(__maybenull void*, FLOAT, FLOAT, const DWRITE_STRIKETHROUGH*, IUnknown*)
 { return S_OK; }
 
-HRESULT IDirectWriteMeshTextRenderer::DrawInlineObject(void*, FLOAT, FLOAT, IDWriteInlineObject*, BOOL, BOOL, IUnknown*)
+STDMETHODIMP IDirectWriteMeshTextRenderer::DrawInlineObject(__maybenull void*, FLOAT, FLOAT, IDWriteInlineObject*, BOOL, BOOL, IUnknown*)
 { return S_OK; }
 
 #pragma region IUnknown interface
-ULONG IDirectWriteMeshTextRenderer::AddRef()
+STDMETHODIMP_(unsigned long) IDirectWriteMeshTextRenderer::AddRef()
 { return InterlockedIncrement(&count_); }
 
-ULONG IDirectWriteMeshTextRenderer::Release()
+STDMETHODIMP_(unsigned long) IDirectWriteMeshTextRenderer::Release()
 {
 	const auto count = InterlockedDecrement(&count_);
 	if (!count) {
@@ -180,7 +149,7 @@ ULONG IDirectWriteMeshTextRenderer::Release()
 	return count;
 }
 
-HRESULT IDirectWriteMeshTextRenderer::QueryInterface(const IID& riid, void** object)
+STDMETHODIMP IDirectWriteMeshTextRenderer::QueryInterface(const IID& riid, void** object)
 {
 	if (object == nullptr)
 		return E_POINTER;

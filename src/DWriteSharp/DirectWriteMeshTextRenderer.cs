@@ -86,7 +86,7 @@ namespace DWriteSharp
         #region COM Method wrappers
         private void Clear()
         {
-            var hr = clear(comObject);
+            //var hr = clear(comObject);
             //Marshal.ThrowExceptionForHR(hr);
         }
 
