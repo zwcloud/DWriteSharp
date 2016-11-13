@@ -1,5 +1,7 @@
 {
-  "version": "1.0.0-*",
+    "title": "DirectWrite Wrapper Library",
+    "copyright": "zwcloud@hotmail.com",
+    "version": "1.0.0-*",
 
     "dependencies": {
         "NETStandard.Library": "1.6.0",
