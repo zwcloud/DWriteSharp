@@ -9,5 +9,6 @@ Runs on Windows desktop only. Tested on Windows 10.
 TODO
 
 # License
-zwcloud@hotmail.com
-MIT
+ MIT   
+ Copyright (c) 2016 Zou Wei, https://zwcloud.net/ , zwcloud@hotmail.com
+ 
