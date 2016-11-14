@@ -20,7 +20,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DWriteSharpNativeHelper", "
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dep", "dep", "{AB555339-EF1E-4E72-A29E-78E41E5D936D}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Cairo", "..\..\VS2013\CairoSharp\Cairo\Cairo.xproj", "{58EE7489-033B-400D-AE47-7ADBACCB9811}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Cairo", "test\dep\CairoSharp\Cairo\Cairo.xproj", "{58EE7489-033B-400D-AE47-7ADBACCB9811}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
