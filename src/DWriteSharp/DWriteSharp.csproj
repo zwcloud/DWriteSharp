@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <Copyright>zwcloud@hotmail.com</Copyright>
+    <AssemblyTitle>DirectWrite Wrapper Library</AssemblyTitle>
+    <TargetFramework>netstandard1.6</TargetFramework>
+    <AssemblyName>DWriteSharp</AssemblyName>
+    <PackageId>DWriteSharp</PackageId>
+    <PackageTargetFallback>$(PackageTargetFallback);dnxcore50</PackageTargetFallback>
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+    <Description>a C# warpper of DirectWrite</Description>
+    <PackageProjectUrl>https://github.com/zwcloud/DwriteSharp</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/zwcloud/DWriteSharp</RepositoryUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="System.Diagnostics.TraceSource" Version="4.0.0" />
+  </ItemGroup>
+</Project>
