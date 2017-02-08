@@ -1,13 +1,12 @@
-﻿using NUnit.Framework;
+﻿using Xunit;
 using DWriteSharp;
 using System.Text;
 
 namespace DWriteSharpTest
 {
-    [TestFixture]
     public class DirectWriteMeshTextRendererTests
     {
-        [TestCase]
+        [Fact]
         public void ThingGetsObjectValFromNumber()
         {
             /* create */
@@ -27,7 +26,7 @@ namespace DWriteSharpTest
 
             DWrite.RenderLayoutToMesh(textLayout, 0, 0, AddLine, AddBezier, ClosePath, FigureBegin, FigureEnd);
 
-            SaveToTextFile("out.txt");
+            SaveToTextFile("D:\\out.txt");
         }
 
         static StringBuilder builder = new StringBuilder(1024);
