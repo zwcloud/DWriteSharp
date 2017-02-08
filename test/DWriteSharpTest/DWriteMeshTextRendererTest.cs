@@ -1,20 +1,17 @@
-﻿using NUnit.Framework;
+﻿using Xunit;
 using DWriteSharp;
 using System.Text;
 
 namespace DWriteSharpTest
 {
-    [TestFixture]
     public class DWriteMeshTextRendererTest
     {
-        const string TestProjectDir = @"W:\VS2015\DWriteSharp\test\DWriteSharpTest";
-
         const bool WriteMeshToText = true;
-        const string MeshTextPath = "mesh_text.txt";
+        const string MeshTextPath = "D:\\mesh_text.txt";
         StringBuilder builder;
 
         const bool DrawPath = true;
-        const string PathImagePath = "path_image.png";
+        const string PathImagePath = "D:\\path_image.png";
         Cairo.ImageSurface surface;
         Cairo.Context g;
 
@@ -82,8 +79,8 @@ namespace DWriteSharpTest
         }
 
         #endregion
-        
-        [TestCase]
+
+        [Fact]
         public void ShouldGetCorrectOutline()
         {
             // create a TextFormat
@@ -131,9 +128,9 @@ namespace DWriteSharpTest
                 g.Dispose();
                 surface.Dispose();
 
-                Assert.IsFalse(PathImagePath.Contains(" "));
+                Assert.False(PathImagePath.Contains(" "));
                 // open the image in Windows Photo Viewer
-                System.Diagnostics.Process.Start(@"C:\WINDOWS\System32\rundll32.exe", @"""C:\Program Files\Windows Photo Viewer\PhotoViewer.dll"", ImageView_Fullscreen " + TestProjectDir + '\\' + PathImagePath);
+                System.Diagnostics.Process.Start(@"C:\WINDOWS\System32\rundll32.exe", @"""C:\Program Files\Windows Photo Viewer\PhotoViewer.dll"", ImageView_Fullscreen " + PathImagePath);
             }
             
             // manually check if the output text and image shows a right outline of the text
