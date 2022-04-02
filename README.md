@@ -6,9 +6,7 @@ The library is compiled on .NET Core (.NET Standrad 1.6) with VS2015.
 Runs on Windows desktop only. Tested on Windows 10.
 
 # Usage
-TODO
+See XUnit tests in [DWriteSharpTest](https://github.com/zwcloud/DWriteSharp/tree/master/test/DWriteSharpTest).
 
 # License
- MIT   
- Copyright (c) 2016 Zou Wei, https://zwcloud.net/ , zwcloud@hotmail.com
- 
+MIT   
